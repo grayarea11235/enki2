@@ -18,11 +18,12 @@ class MyDock(enki.widgets.dockwidget.DockWidget):
                                                     "RSS Feed",
                                                     QIcon(":enkiicons/help.png"),
                                                     "Alt+H")
-        self.label = QLabel("This is Hello World dock")
+        self.label = QLabel("This is Ciarans Dock")
         self.setWidget(self.label)
 
         self.list = QListWidget()
         self.list.doubleClicked.connect(self.mouseDoubleClickEvent)
+        self.list.setAlternatingRowColors(True)
         self.setWidget(self.list)
 
         self.refresh_feed()
@@ -36,14 +37,18 @@ class MyDock(enki.widgets.dockwidget.DockWidget):
 
     def refresh_feed(self):
         #        url = 'http://feeds.bbci.co.uk/news/world/rss.xml?edition=uk'
-        #url = 'http://www.abc.net.au/news/feed/51120/rss.xml'
-        url = core.config()['RSS']['URL']
+        url = 'http://www.abc.net.au/news/feed/51120/rss.xml'
+        #url = core.config()['RSS']['URL']
         feed = feedparser.parse(url)
 
         self.list.clear()
         for f in feed['items']:
             new_item = QListWidgetItem(f['title'])
             new_item.setToolTip(f['published'] + '\n\n' + f['summary'])
+
+            new_item.setForeground(Qt.white); 
+            new_item.setBackground(Qt.black); 
+
             new_item.setData(Qt.UserRole, f['link'])
             self.list.addItem(new_item)
 

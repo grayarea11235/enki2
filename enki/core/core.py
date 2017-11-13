@@ -69,6 +69,7 @@ class Core(QObject):
         self._loadedPlugins = []
         self._cmdLine = {}
         self._project = None
+#        self._log = LogManager()
 
     def _prepareToCatchSigInt(self):
         """Catch SIGINT signal to close the application
