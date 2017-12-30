@@ -92,7 +92,7 @@ class Plugin:
     def terminate(self):
         """This method is called by core for each plugin during termination
         """
-        core.actionManager().removeAction(self._action)
+        #core.actionManager().removeAction(self._action)
 #        QMessageBox.information(core.mainWindow(), "Hello, world", "Plugin terminated")
 
     def _addAction(self):
